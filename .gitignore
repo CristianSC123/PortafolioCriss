@@ -4,6 +4,3 @@ backend/.env
 backend/*/__pycache__/
 
 # Frontend (React/Vue)
-frontend/node_modules/
-frontend/.env
-frontend/dist/
