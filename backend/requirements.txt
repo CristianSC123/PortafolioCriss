@@ -1,0 +1,10 @@
+boto3
+Django
+django-compressor
+django-storages
+gunicorn
+pillow
+psycopg2-binary
+sentence-transformers
+whitenoise
+django-extensions
