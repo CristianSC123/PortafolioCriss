@@ -119,7 +119,7 @@ export function ExperienceEducationSection({ educacion, certificado, experiencia
 
         <div className="flex flex-wrap justify-center gap-8">
           {combinedData.map((item, index) => (
-            <div key={index} className="w-full md:w-[300px]">
+            <div key={index} className="w-full md:w-[280px]">
               <SkillCard
                 icon={item.icon}
                 title={item.title}

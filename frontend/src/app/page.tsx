@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { fetchInformacion, fetchSocialMedia, fetchSkills, fetchEducacion, fetchCertificado, fetchExperiencia} from "@/services/api";
+import { fetchInformacion, fetchSocialMedia, fetchSkills, fetchEducacion, fetchCertificado, fetchExperiencia, fetchProyectos} from "@/services/api";
 import { handleScroll, scrollToSection } from "@/utils/scrollUtils";
 import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
@@ -52,6 +52,12 @@ export default function PortfolioPage() {
     staleTime: 60 * 1000,
   })
 
+  const {data: proyectos, isLoading: isProyectosLoading, error: proyectosError} = useQuery({
+    queryKey: ['proyectos'],
+    queryFn: fetchProyectos,
+    staleTime: 60 * 1000,
+  })
+
 
   useEffect(() => {
     const scrollListener = () => handleScroll(setActiveSection);
@@ -75,7 +81,8 @@ export default function PortfolioPage() {
     </div>
   );
 
-  if (isLoading || isSkillsLoading || isEducacionLoading || isCertificadoLoading || isExperienciaLoading) {
+  if (isLoading || isSkillsLoading || isEducacionLoading || 
+    isCertificadoLoading || isExperienciaLoading || isProyectosLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-black">
         <div className="text-[#00ff66]">Loading portfolio...</div>
@@ -83,7 +90,7 @@ export default function PortfolioPage() {
     );
   }
 
-  if (error || skillsError || educacionError || certificadoError || experienciaError) {
+  if (error || skillsError || educacionError || certificadoError || experienciaError || proyectosError) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-black">
         <div className="text-red-500">
@@ -115,7 +122,7 @@ export default function PortfolioPage() {
       certificado={certificado??[]}
       experiencia={experiencia ?? []}
       />
-      <ProjectsSection />
+      <ProjectsSection proyectos={proyectos??[]}/>
       <ContactSection linkedin={socialMedia?.[1]}
         email={informacion?.[0]?.email}
       />

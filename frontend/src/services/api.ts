@@ -1,6 +1,7 @@
 import { Certificado, Educacion } from "@/types/educacion";
 import { Experiencia } from "@/types/experiencia";
 import { Informacion } from "@/types/informacion";
+import { Proyecto } from "@/types/proyecto";
 import { SkillsResponse } from "@/types/skills";
 import { SocialMediaItem} from "@/types/social_media";
 
@@ -55,6 +56,14 @@ export const fetchCertificado = async (): Promise<Certificado[]> => {
 export const fetchExperiencia = async (): Promise<Experiencia[]> => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/experiencia/`);
   
+  if (!response.ok) {
+    throw new Error('Failed to fetch data');
+  }
+  return response.json();
+}
+
+export const fetchProyectos = async (): Promise<Proyecto[]>=>{
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/proyectos/`);
   if (!response.ok) {
     throw new Error('Failed to fetch data');
   }

@@ -1,20 +1,15 @@
-"use client"
+"use client";
 
 import { Badge } from "@/components/ui/badge";
 import { ProjectCard } from "@/components/ui/ProjectCard";
+import { Proyecto } from "@/types/proyecto";
 
-const projects = [
-  {
-    title: "E-Commerce Platform",
-    description: "Full-featured online store with product catalog and payment integration.",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["React", "Node.js", "MongoDB"],
-    githubUrl: "#",
-    liveUrl: "#"
-  },
-];
+interface Props {
+  proyectos: Proyecto[];
+}
 
-export function ProjectsSection() {
+export function ProjectsSection({ proyectos }: Props) {
+  console.log(proyectos);
   return (
     <section id="projects" className="py-20 bg-black relative">
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-bl from-[#00ccff]/5 to-[#9900ff]/5 opacity-30"></div>
@@ -27,9 +22,17 @@ export function ProjectsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <ProjectCard key={index} {...project} />
+        <div className="text-justify grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {proyectos.map((project, index) => (
+            <ProjectCard
+              key={index}
+              title={project.id}
+              description={project.descripcion}
+              tags={project.tecnologias.map((tec) => tec.nombre)}
+              image={project.imagen}
+              githubUrl={project.url_repositorio || "#"}
+              liveUrl={project.url_demo || "#"}
+            />
           ))}
         </div>
       </div>

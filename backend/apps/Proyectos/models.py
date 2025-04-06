@@ -12,6 +12,9 @@ class Proyecto (models.Model):
     destacado = models.BooleanField(default=False)
     tecnologias = models.ManyToManyField('Tecnologia', through='TecnologiaProyecto')
     
+    def __str__(self):
+        return self.titulo
+    
     class Meta ():
         ordering = ['-fecha']
 
