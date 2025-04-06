@@ -7,6 +7,7 @@ class Experiencia (models.Model):
         ('medio_tiempo', 'Medio Tiempo'),
         ('freelance', 'Freelance'),
         ('practicas', 'Prácticas'),
+        ('horario', 'Horario'),
     ]
     
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -19,6 +20,10 @@ class Experiencia (models.Model):
     
     class Meta:
         ordering = ['-fecha_inicio']
+        
+    def __str__(self):
+        return f"{self.empresa}"
+    
         
 class Logro(models.Model):
     experiencia = models.ForeignKey(Experiencia, on_delete=models.CASCADE, related_name='logros')

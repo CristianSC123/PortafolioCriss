@@ -23,6 +23,9 @@ class Educacion(models.Model):
         ordering = ['-fecha_inicio']
         verbose_name = "Educación"
         
+    def __str__(self):
+        return f"{self.institucion}"        
+        
 class Certificado (models.Model):
     educacion = models.ForeignKey(Educacion, on_delete=models.CASCADE, related_name='certificados')
     nombre = models.CharField(max_length=100)

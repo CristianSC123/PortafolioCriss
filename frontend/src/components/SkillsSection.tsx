@@ -1,33 +1,39 @@
 "use client"
 
-import { Code, Database, Layers, Smartphone } from "lucide-react"
+import { Code, Database, Smartphone } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { SkillCard } from "@/components/ui/SkillCard"
+import { SkillCategory } from "@/types/skills"
 
-export function SkillsSection() {
+export function SkillsSection({skills}:{skills: SkillCategory[]}) {
+  if (!skills || skills.length < 3) {
+    return (
+      <section className="py-20 bg-zinc-950 text-center text-gray-300">
+        <p>Loading skills...</p>
+      </section>
+    );
+  }
+  
+  const frontend = skills[0]
+  const backend = skills[1]
+  const otherSkills = skills [2]
   const skillsData = [
     {
-      icon: <Code size={32} />,
-      title: "Frontend Development",
-      skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "HTML/CSS"],
+      icon: <Code size={42} />,
+      title: frontend.nombre?? "nada",
+      skills: frontend.skills.map((item)=>item.nombre),
       color: "#00ff66"
     },
     {
-      icon: <Database size={32} />,
-      title: "Backend Development",
-      skills: ["Node.js", "Express", "MongoDB", "PostgreSQL", "REST APIs"],
+      icon: <Database size={42} />,
+      title: backend.nombre ?? "nada",
+      skills: backend.skills.map((item)=>item.nombre),
       color: "#9900ff"
     },
     {
-      icon: <Layers size={32} />,
-      title: "UI/UX Design",
-      skills: ["Figma", "Responsive Design", "User Experience", "Wireframing"],
-      color: "#00ccff"
-    },
-    {
-      icon: <Smartphone size={32} />,
-      title: "Other Skills",
-      skills: ["Git/GitHub", "CI/CD", "Testing", "Performance Optimization"],
+      icon: <Smartphone size={42} />,
+      title: otherSkills.nombre ?? "nada",
+      skills: otherSkills.skills.map((item)=>item.nombre),
       color: "#ff00cc"
     }
   ]
@@ -43,19 +49,21 @@ export function SkillsSection() {
             My Skills & Technologies
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Ive worked with a range of technologies in the web development world.
+            I have worked with a range of technologies in the web development world.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="flex flex-wrap justify-center gap-8">
           {skillsData.map((skill, index) => (
-            <SkillCard
-              key={index}
-              icon={skill.icon}
-              title={skill.title}
-              skills={skill.skills}
-              color={skill.color}
-            />
+            <div key={index} className="w-full md:w-[300px]">
+              <SkillCard
+                key={index}
+                icon={skill.icon}
+                title={skill.title}
+                skills={skill.skills}
+                color={skill.color}
+              />
+            </div>
           ))}
         </div>
       </div>

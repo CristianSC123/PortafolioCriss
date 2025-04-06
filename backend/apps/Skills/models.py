@@ -9,6 +9,9 @@ class CategoriaSkill (models.Model):
     class Meta:
         ordering = ['orden']
         
+    def __str__(self):
+        return self.nombre
+        
 class Skill (models.Model):
     NIVEL_CHOICES = [
         (1,'Básico'),
@@ -23,3 +26,5 @@ class Skill (models.Model):
     
     class Meta:
         ordering = ['orden']
+    def __str__(self):
+        return self.nombre

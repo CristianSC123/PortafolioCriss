@@ -12,7 +12,6 @@ const projects = [
     githubUrl: "#",
     liveUrl: "#"
   },
-  // Agrega más proyectos aquí
 ];
 
 export function ProjectsSection() {

@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Informacion
-from .serializers import InformacionSerializer
+from .models import Informacion, SocialMedia
+from .serializers import InformacionSerializer, SocialMediaSerializer
 from rest_framework import generics
 
 def index(request):
@@ -12,3 +12,7 @@ def index(request):
 class InformacionAPIView(generics.ListCreateAPIView):
     queryset = Informacion.objects.all()
     serializer_class = InformacionSerializer
+    
+class SocialMediaAPIView(generics.ListCreateAPIView):
+    queryset = SocialMedia.objects.all()
+    serializer_class = SocialMediaSerializer

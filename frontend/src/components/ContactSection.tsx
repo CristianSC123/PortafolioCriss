@@ -4,23 +4,31 @@ import { Mail, Linkedin } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ContactCard } from "@/components/ui/ContactCard"
+import { SocialMediaItem } from "@/types/social_media"
 
-export function ContactSection() {
+interface ContactSectionProps{
+  linkedin?: SocialMediaItem;
+  twitter?: SocialMediaItem;
+  github?: SocialMediaItem;
+  email?: string;
+}
+
+export function ContactSection({linkedin, email}: ContactSectionProps) {
   const contactMethods = [
     {
       icon: <Mail size={24} />,
       title: "Email",
       description: "Feel free to email me",
-      link: "mailto:tuemail@ejemplo.com",
-      linkText: "tuemail@ejemplo.com",
+      link: `mailto:${email}`,
+      linkText: `${email}`,
       color: "#00ff66"
     },
     {
       icon: <Linkedin size={24} />,
       title: "LinkedIn",
       description: "Let's connect professionally",
-      link: "https://linkedin.com/in/tuperfil",
-      linkText: "linkedin.com/in/tuperfil",
+      link: `${linkedin?.url}`,
+      linkText: linkedin?.username || "LinkedIn Profile",
       color: "#00ccff"
     }
   ]

@@ -20,6 +20,9 @@ class Tecnologia(models.Model):
     nombre = models.CharField(max_length=50, unique=True)
     icono = models.CharField(max_length=100)
     
+    def __str__(self):
+        return self.nombre
+    
 class TecnologiaProyecto(models.Model):
     proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE)
     tecnologia = models.ForeignKey(Tecnologia, on_delete=models.CASCADE)
