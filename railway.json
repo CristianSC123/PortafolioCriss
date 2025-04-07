@@ -1,0 +1,16 @@
+{
+    "builds": [
+      {
+        "name": "backend",
+        "root": "backend",
+        "runtime": "python",
+        "startCommand": "gunicorn tu_proyecto_django.wsgi --workers=2 --threads=4 --bind 0.0.0.0:$PORT"
+      },
+      {
+        "name": "frontend",
+        "root": "frontend",
+        "runtime": "node",
+        "startCommand": "npm run start"
+      }
+    ]
+  }
