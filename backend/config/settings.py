@@ -14,7 +14,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-import dj_database_url
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = 'django-insecure-w#jt3i)7j-f3*lc=8-5&xj969itd_bk6!q-&aoymtez07)ym*n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'False') == 'True' 
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -61,8 +60,7 @@ INSTALLED_APPS = [
     'apps.Proyectos',
     'apps.Skills',
     'rest_framework',
-    'corsheaders', 
-    'django_extensions'     
+    'corsheaders'
 ]
 
 MEDIA_URL = '/media/'
@@ -104,7 +102,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parse(os.getenv('DATABASE_URL')),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'mgvTMhBkoknEYFGQvqPElbfZMrxPpVDA',
+        'HOST': 'yamabiko.proxy.rlwy.net',  
+        'PORT': '38465',      
+    }
 }
 
 
